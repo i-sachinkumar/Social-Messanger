@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.widget.*
+import android.text.TextWatcher as TextWatcher
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,14 +14,14 @@ class MainActivity : AppCompatActivity() {
     val ANONYMOUS = "anonymous"
     val DEFAULT_MSG_LENGTH_LIMIT = 1000
 
-    private var mMessageListView: ListView? = null
-    private var mMessageAdapter: MessageAdapter? = null
-    private var mProgressBar: ProgressBar? = null
-    private var mPhotoPickerButton: ImageButton? = null
-    private var mMessageEditText: EditText? = null
-    private var mSendButton: Button? = null
+    private lateinit var mMessageListView: ListView
+    private lateinit var mMessageAdapter: MessageAdapter
+    private lateinit var mProgressBar: ProgressBar
+    private lateinit var mPhotoPickerButton: ImageButton
+    private lateinit var mMessageEditText: EditText
+    private lateinit var mSendButton: Button
 
-    private var mUsername: String? = null
+    private lateinit var mUsername: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,40 +41,43 @@ class MainActivity : AppCompatActivity() {
 //        mMessageAdapter = new MessageAdapter(this, R.layout.item_message, friendlyMessages);
 //        mMessageListView.setAdapter(mMessageAdapter);
 
-        var socialMessages : List<SocialMessage>? = null
+        val socialMessages : List<SocialMessage> = arrayListOf()
         mMessageAdapter = MessageAdapter(this, R.layout.item_message, socialMessages)
         mMessageListView.adapter = mMessageAdapter
 
         // Initialize progress bar
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+        mProgressBar.visibility = ProgressBar.INVISIBLE;
 
-        // ImagePickerButton shows an image picker to upload a image for a message
-        mPhotoPickerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: Fire an intent to show an image picker
-            }
-        });
+          // ImagePickerButton shows an image picker to upload a image for a message
+//        mPhotoPickerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // TODO: Fire an intent to show an image picker
+//            }
+//        });
+
+        mPhotoPickerButton.setOnClickListener{
+            TODO()
+        }
+
+
 
         // Enable Send button when there's text to send
-        mMessageEditText.addTextChangedListener(new TextWatcher() {
+        mMessageEditText.addTextChangedListener(TextWatcher(){
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            fun beforeTextChanged(charSequence :CharSequence , i : Int, i1: Int , i2 : Int) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.toString().trim().length() > 0) {
-                    mSendButton.setEnabled(true);
-                } else {
-                    mSendButton.setEnabled(false);
-                }
+            fun onTextChanged(charSequence :CharSequence , i : Int, i1: Int , i2 : Int) {
+                mSendButton.isEnabled = charSequence.toString().trim().isNotEmpty()
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
             }
         });
+        mMessageEditText.addTextChangedListener(TextWatcher())
         mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
         // Send button sends a message and clears the EditText
