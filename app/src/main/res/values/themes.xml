@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.SocialMessenger" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <color name="colorPrimary">#FF9800</color>
+        <item name="colorPrimaryVariant">#E65100</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,5 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+
+        <color name="colorPrimaryDark">#E65100</color>
+        <color name="colorAccent">#2E7D32</color>
+        <color name="colorTitle">#ffffff</color>
+
+    </style>
+
+    <style name="FriendlyButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorTitle</item>
     </style>
 </resources>
