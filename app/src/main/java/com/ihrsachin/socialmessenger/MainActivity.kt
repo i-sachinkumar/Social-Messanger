@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.*
 import android.text.TextWatcher as TextWatcher
 
@@ -82,27 +85,23 @@ class MainActivity : AppCompatActivity() {
         mMessageEditText.filters = new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)};
         mMessageEditText.filters = InputFilter()[]{ InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)}
         // Send button sends a message and clears the EditText
-        mSendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mSendButton.setOnClickListener{
                 // TODO: Send messages on click
 
                 // Clear input box
                 mMessageEditText.setText("");
             }
-        });
+        }
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
+    fun onCreateOptionsMenu(menu : Menu): Boolean {
+        val inflater : MenuInflater? = null
+        inflater!!.inflate(R.menu.menu, menu)
+        return true
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+    fun onOptionsItemSelected(item : MenuItem) : Boolean{
+        return super.onOptionsItemSelected(item)
     }
 }
