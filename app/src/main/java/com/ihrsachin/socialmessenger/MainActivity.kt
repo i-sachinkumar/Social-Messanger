@@ -3,6 +3,7 @@ package com.ihrsachin.socialmessenger
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.widget.*
 import android.text.TextWatcher as TextWatcher
 
@@ -74,12 +75,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            fun afterTextChanged(editable: Editable ) {
             }
         });
-        mMessageEditText.addTextChangedListener(TextWatcher())
-        mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)});
 
+        mMessageEditText.filters = new InputFilter[]{new InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)};
+        mMessageEditText.filters = InputFilter()[]{ InputFilter.LengthFilter(DEFAULT_MSG_LENGTH_LIMIT)}
         // Send button sends a message and clears the EditText
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
